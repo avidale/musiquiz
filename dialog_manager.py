@@ -139,6 +139,7 @@ class QuizDialogManager(tgalice.dialog_manager.base.BaseDialogManager):
                             self.TEMPLATES.ARTIST_ID, str(artist['playlistnum'])
                         )
                     )
+                    response.image_id = artist['photo']
                 else:
                     ask(self._questions_order[next_q_index])
         else:
