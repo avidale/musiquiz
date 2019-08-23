@@ -1,0 +1,5 @@
+tgalice==0.1.5
+mongomock
+pandas
+pymongo
+xlrd
