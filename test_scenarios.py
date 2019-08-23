@@ -26,4 +26,3 @@ def test_start(default_dialog_manager):
     assert 'Йоу!' in r0.text  # substring in string
     assert 'да' in r0.suggests  # string in list of strings
     assert 'нет' in r0.suggests  # string in list of strings
-
