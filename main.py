@@ -21,6 +21,6 @@ if __name__ == '__main__':
     )
     server = tgalice.flask_server.FlaskServer(
         connector=connector, collection_for_logs=mongo_logs,
-        not_log_id={'CA0EE84DF8E61CD1C94D792758D8975CC0B3EE6AD2CDAD79530160CFC496DEA4'}
+        not_log_id={'323149CB24DF1D7CE11CB9D3C80462CC84B478607FB65519C23A747A53D643AF'}
     )
     server.parse_args_and_run()
