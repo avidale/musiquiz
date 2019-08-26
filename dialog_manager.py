@@ -104,6 +104,8 @@ class QuizDialogManager(tgalice.dialog_manager.base.BaseDialogManager):
             response.set_text(self._TEXT_HELLO)
             response.suggests = ['да', 'нет']
             set_state(STATE.HELLO)
+        elif message_text == '/help' or tgalice.basic_nlu.like_help(normalized_text):
+            response.set_text(self._TEXT_HELP)
         elif prev_state == STATE.HELLO.name or prev_state == STATE.HELP.name:
             if tgalice.basic_nlu.like_no(normalized_text):
                 response.set_text(self._TEXT_NO)
