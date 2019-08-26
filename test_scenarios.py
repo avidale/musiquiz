@@ -6,7 +6,7 @@ from dialog_manager import QuizDialogManager
 
 @pytest.fixture
 def default_dialog_manager():
-    return QuizDialogManager('texts/artists_twins.xlsx')
+    return QuizDialogManager.from_yaml('texts/quiz.yaml')
 
 
 def make_context(text='', prev_response=None, new_session=False):

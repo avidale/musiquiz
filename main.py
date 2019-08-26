@@ -16,7 +16,7 @@ if __name__ == '__main__':
     mongo_logs = mongo_db.get_collection('message_logs')
 
     connector = tgalice.dialog_connector.DialogConnector(
-        dialog_manager=QuizDialogManager('texts/artists_twins.xlsx'),
+        dialog_manager=QuizDialogManager.from_yaml('texts/quiz.yaml'),
         storage=tgalice.session_storage.MongoBasedStorage(database=mongo_db, collection_name='sessions')
     )
     server = tgalice.flask_server.FlaskServer(

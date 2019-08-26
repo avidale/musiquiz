@@ -1,0 +1,656 @@
+phrases:
+  hello: 'Йоу! Приветствую тебя в навыке Музыкальный близнец! С помощью короткой игры
+    ты сможешь узнать, кто из музыкантов двадцатого века разделяет твои вкусы, а так
+    же подобрать идеальный плейлист. Продолжим?'
+  if_no: 'Очень жаль! Кажется, тебе не нужна моя помощь в подборе музыки. Ты точно
+    знаешь, чего хочешь! Поэтому переходи на Яндекс.Музыку и начинай слушать, что
+    душе угодно. Думаю, тебе точно понравится плейлист дня!
+    <a href="https://music.yandex.ru?from=alice_skill_musical_twin">Слушать музыку</a>'
+  help: 'Это навык Музыкальный близнец. Он помогает подобрать музыканта, который подходит
+    тебе по взглядам на жизнь и музыкальным предпочтениям. С помощью навыка можно
+    получить плейлист, который подойдет именно вам. Чтобы начать игру, скажите "Начать". Чтобы выйти, скажите "Выход".'
+  finish: 'Ого! Мы выяснили, что вы - музыкальный близнец {{artist_name}}. Скорее переходите
+    на Яндекс.Музыку, чтобы послушать любимые композиции {{artist_name}}. При оформлении
+    платной подписки вас ждет свободный от рекламы мир музыки.
+    <a href="https://music.yandex.ru/artist/{{artist_id}}/similar?from=alice_skill_musical_twin">Музыка типа {{artist_name}}</a>'
+  exit: 'Очень жаль с вами расставаться, мы так мило беседовали. Возвращайтесь ещё, поговорим о музыке. До встречи!'
+
+questions:
+- key: sex
+  text: 'Ну, начнем! Разделение певческих голосов происходит по диапазону и по полу
+    певца. В оперном мире даже существует поговорка: «Басы — пьяницы, баритоны — бабники,
+    тенора — дураки!» А вы кем будете?'
+  answers:
+  - text: Бас
+    value: м
+  - text: Сопрано
+    value: ж
+  - text: Тенор
+    value: м
+  - text: Контральто
+    value: ж
+- key: genre
+  text: 'Так и знала! Выступления британской рок-группы "The Who" сочетали в себе дикий
+    напор и сокрушительную зрелищность. Их вокалист Роджер Долтри сравнил разбитые
+    музыкальные инструменты с жертвенными животными. А какой музыкальный инструмент
+    выберешь ты?'
+  answers:
+  - text: Голос
+    value: пение
+  - text: Гитара
+    value: гитара
+  - text: Все, что угодно
+    value: инструментал
+  - text: Я так не играю
+    value: треш
+- key: style
+  text: Лидер группы Нирвана Курта Кобейна всегда ходил в рванине. Одобряете?
+  answers:
+  - text: Нет
+    value: понты
+  - text: Конечно
+    value: скромно
+  - text: Да
+    value: пофиг
+  - text: Не знаю
+    value: практик
+- key: texts
+  text: 'Вот в песнях Монеточки и Земфиры самое главное - это текст, а Led Zeppelin
+    больше про звучание! А вы больше поэт или музыкант?'
+  answers:
+  - text: Поэт
+    value: текст
+  - text: Музыкант
+    value: музыка
+  - text: Важно все
+    value: важно всё
+  - text: Ничего не важно
+    value: пофиг
+- key: people
+  text: 'Однажды с музыкантами группы Queen произошел забавный случай: фанаты послали
+    им письмо, а почтольон доставил его английской королеве. Надеюсь, твои фанаты
+    так не облажаются. Кстати, какие у тебя фанаты?'
+  answers:
+  - text: Простые люди
+    value: никакая
+  - text: Молодежь
+    value: молодые
+  - text: Старики
+    value: взрослые
+  - text: Все на свете
+    value: микс
+- key: mood
+  text: 'Девид Ли Роуз не любит бег трусцой, потому что у него лёд из стакана выпрыгивает.
+    А что из напитков любишь ты?'
+  answers:
+  - text: Чай
+    value: обычный
+  - text: Водка
+    value: грустный
+  - text: Кока-кола
+    value: загадочный
+  - text: Пиво
+    value: весёлый
+- key: epoch
+  text: Из какой ты эпохи?
+  answers:
+  - text: 60-е
+    value: '60'
+  - text: 70-е
+    value: '70'
+  - text: 80-е
+    value: '80'
+  - text: 90-е
+    value: '90'
+
+artists:
+- artist_name: Курт Кобейн
+  epoch: 80
+  epochsecond: .nan
+  genre: гитара
+  mood: грустный
+  people: молодые
+  photo: 965417/94dbf5346ec9d06bcfc4
+  playlistnum: 9262
+  sex: м
+  style: пофиг
+  texts: пофиг
+- artist_name: Пол Маккартни
+  epoch: 60
+  epochsecond: .nan
+  genre: инструментал
+  mood: грустный
+  people: взрослые
+  photo: 1652229/8fcda7c6aa49e2162694
+  playlistnum: 1814
+  sex: м
+  style: практик
+  texts: важно всё
+- artist_name: Фредди Меркьюри
+  epoch: 70
+  epochsecond: .nan
+  genre: пение
+  mood: весёлый
+  people: микс
+  photo: 1540737/cbabf9ed20fc41ced338
+  playlistnum: 79215
+  sex: ж
+  style: понты
+  texts: важно всё
+- artist_name: Оззи Осборн
+  epoch: 70
+  epochsecond: .nan
+  genre: гитара
+  mood: загадочный
+  people: молодые
+  photo: 1030494/b883754b50406bb6510e
+  playlistnum: 3274
+  sex: м
+  style: понты
+  texts: пофиг
+- artist_name: Майкл Джексон
+  epoch: 80
+  epochsecond: .nan
+  genre: пение
+  mood: весёлый
+  people: молодые
+  photo: 1652229/4e658c044fe4cb70e068
+  playlistnum: 972
+  sex: м
+  style: понты
+  texts: пофиг
+- artist_name: Дэвид Боуи
+  epoch: 60
+  epochsecond: 90.0
+  genre: инструментал
+  mood: загадочный
+  people: микс
+  photo: 1030494/8d83048fde1c361ca430
+  playlistnum: 4650
+  sex: м
+  style: понты
+  texts: важно всё
+- artist_name: Мик Джаггер
+  epoch: 70
+  epochsecond: .nan
+  genre: пение
+  mood: веселый
+  people: микс
+  photo: 1540737/fa7e98d66f87e7f03af2
+  playlistnum: 6601
+  sex: м
+  style: пофиг
+  texts: важно всё
+- artist_name: Сид Вишес
+  epoch: 70
+  epochsecond: .nan
+  genre: треш
+  mood: загадочный
+  people: молодые
+  photo: 1540737/b5d863cb3892e145142f
+  playlistnum: 34458
+  sex: м
+  style: пофиг
+  texts: пофиг
+- artist_name: Фрэнк Синатра
+  epoch: 60
+  epochsecond: 90.0
+  genre: пение
+  mood: весёлый
+  people: взрослые
+  photo: 1652229/4ea1334bcc46daf419dc
+  playlistnum: 3989
+  sex: м
+  style: скромный
+  texts: текст
+- artist_name: Боб Дилан
+  epoch: 60
+  epochsecond: .nan
+  genre: пение
+  mood: загадочный
+  people: микс
+  photo: 1540737/d69084c0ae4d1e92497b
+  playlistnum: 1665
+  sex: м
+  style: скромный
+  texts: текст
+- artist_name: Элвис Пресли
+  epoch: 70
+  epochsecond: .nan
+  genre: пение
+  mood: весёлый
+  people: микс
+  photo: 1652229/b587e2841c6de9e09805
+  playlistnum: 10987
+  sex: м
+  style: понты
+  texts: музыка
+- artist_name: Стиви Уандер
+  epoch: 70
+  epochsecond: 90.0
+  genre: инструментал
+  mood: веселый
+  people: микс
+  photo: 1652229/58c76adfc2cf6f3ee5c4
+  playlistnum: 566
+  sex: м
+  style: практик
+  texts: важно всё
+- artist_name: Джонни Кэш
+  epoch: 60
+  epochsecond: 90.0
+  genre: пение
+  mood: загадочный
+  people: взрослые
+  photo: 1540737/28d7965074890f667efc
+  playlistnum: 11232
+  sex: м
+  style: скромный
+  texts: текст
+- artist_name: Джими Хендрикс
+  epoch: 60
+  epochsecond: .nan
+  genre: гитара
+  mood: загадочный
+  people: микс
+  photo: 1652229/77767a0c6caba20186e5
+  playlistnum: 4700
+  sex: м
+  style: понты
+  texts: музыка
+- artist_name: Боб Марли
+  epoch: 70
+  epochsecond: .nan
+  genre: пение
+  mood: весёлый
+  people: молодые
+  photo: 1652229/3b42776bcf2dec998e80
+  playlistnum: 1402
+  sex: м
+  style: пофиг
+  texts: текст
+- artist_name: Мадонна
+  epoch: 90
+  epochsecond: .nan
+  genre: пение
+  mood: обычный
+  people: микс
+  photo: 1540737/0d356f1aa4ce0a98053c
+  playlistnum: 1813
+  sex: ж
+  style: понты
+  texts: пофиг
+- artist_name: Джон Леннон
+  epoch: 60
+  epochsecond: .nan
+  genre: инструментал
+  mood: загадочный
+  people: молодые
+  photo: 1652229/506426e4133d976cd577
+  playlistnum: 35004
+  sex: м
+  style: практик
+  texts: важно всё
+- artist_name: Том Йорк
+  epoch: 90
+  epochsecond: .nan
+  genre: инструментал
+  mood: грустный
+  people: микс
+  photo: 1540737/c268a78f9999bcfdbdd5
+  playlistnum: 36825
+  sex: м
+  style: скромный
+  texts: важно всё
+- artist_name: Уитни Хьюстон
+  epoch: 90
+  epochsecond: .nan
+  genre: пение
+  mood: обычный
+  people: взрослые
+  photo: 1540737/ef6fb532756c10af3c34
+  playlistnum: 118884
+  sex: ж
+  style: практик
+  texts: музыка
+- artist_name: Эминем
+  epoch: 90
+  epochsecond: .nan
+  genre: пение
+  mood: обычный
+  people: молодые
+  photo: 1652229/d1cd47020bf46b573d26
+  playlistnum: 1053
+  sex: м
+  style: скромный
+  texts: текст
+- artist_name: Стинг
+  epoch: 90
+  epochsecond: .nan
+  genre: гитара
+  mood: грустный
+  people: взрослые
+  photo: 1540737/5c4e12fba46710cb9b2d
+  playlistnum: 680
+  sex: м
+  style: скромный
+  texts: текст
+- artist_name: Элтон Джон
+  epoch: 70
+  epochsecond: 80.0
+  genre: инструментал
+  mood: обычный
+  people: взрослые
+  photo: 1540737/dd7c0829309711ffa577
+  playlistnum: 668
+  sex: м
+  style: понты
+  texts: важно всё
+- artist_name: Джим Моррисон
+  epoch: 60
+  epochsecond: .nan
+  genre: пение
+  mood: загадочный
+  people: молодые
+  photo: 965417/0f590e7e3994f829e071
+  playlistnum: 29060
+  sex: м
+  style: пофиг
+  texts: текст
+- artist_name: Тупак Шакур
+  epoch: 90
+  epochsecond: .nan
+  genre: пение
+  mood: обычный
+  people: молодые
+  photo: 1652229/0a2e647d32f93ceb3dda
+  playlistnum: 12741
+  sex: м
+  style: понты
+  texts: текст
+- artist_name: Бритни Спирс
+  epoch: 90
+  epochsecond: .nan
+  genre: пение
+  mood: обычный
+  people: молодые
+  photo: 1030494/7e21bac03ac9c6f0eaa3
+  playlistnum: 75628
+  sex: ж
+  style: понты
+  texts: пофиг
+- artist_name: Борис Гребенщиков
+  epoch: 80
+  epochsecond: .nan
+  genre: инструментал
+  mood: загадочный
+  people: микс
+  photo: 965417/122367caa6c3e976c0e7
+  playlistnum: 188963
+  sex: м
+  style: практик
+  texts: важно всё
+- artist_name: Виктор Цой
+  epoch: 80
+  epochsecond: .nan
+  genre: пение
+  mood: грустный
+  people: микс
+  photo: 1540737/51b329598d4917703aff
+  playlistnum: 41075
+  sex: м
+  style: скромный
+  texts: текст
+- artist_name: Бейонсе
+  epoch: 90
+  epochsecond: .nan
+  genre: треш
+  mood: грустный
+  people: никакая
+  photo: 1652229/4b60b1425f7635881c23
+  playlistnum: 27995
+  sex: ж
+  style: пофиг
+  texts: пофиг
+- artist_name: Егор Летов
+  epoch: 80
+  epochsecond: .nan
+  genre: треш
+  mood: дебош
+  people: микс
+  photo: 965417/80dc7ecde28e866f3564
+  playlistnum: 42528
+  sex: м
+  style: пофиг
+  texts: пофиг
+- artist_name: Владимир Высоцкий
+  epoch: 70
+  epochsecond: .nan
+  genre: пение
+  mood: загадочный
+  people: взрослые
+  photo: 965417/212ed6c1263a52eca9a9
+  playlistnum: 118708
+  sex: м
+  style: практик
+  texts: текст
+- artist_name: Роджер Уотерс
+  epoch: 80
+  epochsecond: .nan
+  genre: гитара
+  mood: загадочный
+  people: микс
+  photo: 1540737/35239bfea6c4082d759e
+  playlistnum: 82939
+  sex: м
+  style: скромный
+  texts: музыка
+- artist_name: Андрей Макаревич
+  epoch: 80
+  epochsecond: .nan
+  genre: пение
+  mood: веселый
+  people: взрослые
+  photo: 1540737/ba31a2e326f8d93f986e
+  playlistnum: 1652733
+  sex: м
+  style: пофиг
+  texts: текст
+- artist_name: Стивен Тайлер
+  epoch: 80
+  epochsecond: .nan
+  genre: пение
+  mood: грустный
+  people: микс
+  photo: 1652229/709c360d858236cf60dc
+  playlistnum: 14606
+  sex: м
+  style: понты
+  texts: текст
+- artist_name: Монеточка
+  epoch: 90
+  epochsecond: .nan
+  genre: треш
+  mood: обычный
+  people: никакая
+  photo: 1652229/fa2aeac0a4d59c638368
+  playlistnum: 4623000
+  sex: ж
+  style: понты
+  texts: пофиг
+- artist_name: Боно
+  epoch: 90
+  epochsecond: .nan
+  genre: пение
+  mood: загадочный
+  people: микс
+  photo: 1652229/2280af8a1081dd5a5f7f
+  playlistnum: 1111
+  sex: м
+  style: практик
+  texts: важно всё
+- artist_name: Игги Поп
+  epoch: 70
+  epochsecond: .nan
+  genre: пение
+  mood: веселый
+  people: молодые
+  photo: 1540737/055375c455fbddd95f7b
+  playlistnum: 6925
+  sex: м
+  style: пофиг
+  texts: пофиг
+- artist_name: Ян Кертис
+  epoch: 70
+  epochsecond: .nan
+  genre: пение
+  mood: грустный
+  people: молодые
+  photo: 965417/e7f3ad689d6f4569a321
+  playlistnum: 56012
+  sex: м
+  style: скромный
+  texts: важно всё
+- artist_name: Dr. Dre
+  epoch: 90
+  epochsecond: .nan
+  genre: пение
+  mood: обычный
+  people: молодые
+  photo: 1540737/c17d145a5bd03aca09cd
+  playlistnum: 1057
+  sex: м
+  style: практик
+  texts: текст
+- artist_name: Ангус Янг
+  epoch: 70
+  epochsecond: .nan
+  genre: пение
+  mood: веселый
+  people: микс
+  photo: 1540737/020f319bf0863dbcb4ae
+  playlistnum: 2091
+  sex: м
+  style: понты
+  texts: музыка
+- artist_name: Рой Орбисон
+  epoch: 80
+  epochsecond: .nan
+  genre: инструментал
+  mood: обычный
+  people: взрослые
+  photo: 1652229/3727c753f88dd5fdc773
+  playlistnum: 9301
+  sex: м
+  style: скромный
+  texts: текст
+- artist_name: Селин Дион
+  epoch: 90
+  epochsecond: .nan
+  genre: пение
+  mood: обычный
+  people: микс
+  photo: 1540737/df4d8c1f9ddc52a91523
+  playlistnum: 28323
+  sex: м
+  style: понты
+  texts: музыка
+- artist_name: Алла Пугачева
+  epoch: 80
+  epochsecond: .nan
+  genre: пение
+  mood: весёлый
+  people: никакая
+  photo: 965417/2744287029bea43c0606
+  playlistnum: 167026
+  sex: ж
+  style: практик
+  texts: пофиг
+- artist_name: Муслим Магомаев
+  epoch: 60
+  epochsecond: 70.0
+  genre: инструментал
+  mood: загадочный
+  people: взрослые
+  photo: 1652229/9c04e65fc4c04d2d6934
+  playlistnum: 359985
+  sex: м
+  style: практик
+  texts: музыка
+- artist_name: Эрик Клэптон
+  epoch: 90
+  epochsecond: .nan
+  genre: гитара
+  mood: загадочный
+  people: взрослые
+  photo: 1540737/82f2c8e03ad7b0ce22f2
+  playlistnum: 672
+  sex: м
+  style: скромный
+  texts: нет
+- artist_name: Адель
+  epoch: 90
+  epochsecond: .nan
+  genre: пение
+  mood: весёлый
+  people: никакая
+  photo: 965417/72b6c9c2fa2e9261f4c8
+  playlistnum: 37027
+  sex: ж
+  style: практик
+  texts: пофиг
+- artist_name: Ленинград
+  epoch: 90
+  epochsecond: .nan
+  genre: пение
+  mood: обычный
+  people: микс
+  photo: 965417/ebe0a1ed41242a58fa6e
+  playlistnum: 168851
+  sex: .nan
+  style: практик
+  texts: важно всё
+- artist_name: Билли Айлиш
+  epoch: 90
+  epochsecond: .nan
+  genre: пение
+  mood: загадочный
+  people: взрослые
+  photo: 965417/a1c3145f721f119ab359
+  playlistnum: 4353492
+  sex: ж
+  style: практик
+  texts: важно всё
+- artist_name: Тэйлор Свифт
+  epoch: 90
+  epochsecond: .nan
+  genre: пение
+  mood: веселый
+  people: микс
+  photo: 1540737/a187cd53304768b69e9d
+  playlistnum: 4065
+  sex: ж
+  style: понты
+  texts: важно всё
+- artist_name: Фейс
+  epoch: 80
+  epochsecond: .nan
+  genre: треш
+  mood: обычный
+  people: взрослые
+  photo: 997614/cae15aba47ddcca8b22f
+  playlistnum: 5330511
+  sex: м
+  style: скромный
+  texts: пофиг
+- artist_name: Тима Белорусских
+  epoch: 90
+  epochsecond: .nan
+  genre: треш
+  mood: обычный
+  people: взрослые
+  photo: 213044/916eb5f3fbd7eab11b10
+  playlistnum: 6125147
+  sex: м
+  style: скромный
+  texts: текст

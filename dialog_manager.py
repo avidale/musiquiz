@@ -1,6 +1,6 @@
-import pandas as pd
-import random
+import re
 import tgalice
+import yaml
 
 from enum import Enum
 
@@ -12,16 +12,8 @@ class STATE(Enum):
     HELP = 4
 
 
-def make_unique(seq):
-    seen = set()
-    seen_add = seen.add
-    return [x for x in seq if not (x in seen or seen_add(x))]
-
-
-def sample_at_most(seq, n=1):
-    seq = list(set(seq))
-    random.shuffle(seq)
-    return seq[:n]
+def is_like_start(text):
+    return bool(re.match('нач(ать|ни)( игру)?', tgalice.basic_nlu.fast_normalize(text)))
 
 
 class QuizDialogManager(tgalice.dialog_manager.base.BaseDialogManager):
@@ -29,54 +21,22 @@ class QuizDialogManager(tgalice.dialog_manager.base.BaseDialogManager):
         ARTIST_NAME = '{{artist_name}}'
         ARTIST_ID = '{{artist_id}}'
 
-    def __init__(self, filename, **kwargs):
+    def __init__(self, phrases, questions, artists, **kwargs):
         super(QuizDialogManager, self).__init__(**kwargs)
-        self._data = pd.read_excel(filename, sheet_name=None)
-
-        # parse meta
-        meta = self._data['META']
-        meta.set_index(meta.columns[0], inplace=True)
-
-        self._TEXT_HELLO = meta.loc['Приветственная фраза', 'Text']
-        self._TEXT_NO = meta.loc['Приветствие нет', 'Text']
-        self._TEXT_HELP = meta.loc['Справка', 'Text']
-        self._TEXT_FINISH = meta.loc['Окончание', 'Text']
-
-        # parse questions
-        qdata = self._data['Q&A']
-
-        q_order = {}
-        for k in qdata['key']:
-            if k not in q_order:
-                q_order[k] = len(q_order)
+        self.phrases = phrases
 
         self._questions = {}
-        self._questions_order = {o: k for k, o in q_order.items()}
-
-        for key, df in qdata.groupby('key'):
-            q = {
-                'key': key,
-                'order': q_order[key],
-                'text': df['q_custom'].iloc[0],
-                'answers': []
-            }
-            for j, row in df.iterrows():
-                q['answers'].append({
-                    'text': row['text_custom'],
-                    'value': row['a']
-                })
+        for i, q in enumerate(questions):
+            q['order'] = i
             matcher = tgalice.nlu.matchers.TextDistanceMatcher(
-                metric='levenshtein', by_words=False, threshold=0.5
+                metric='levenshtein', by_words=False, threshold=0.4
             )
             matcher.fit([a['text'] for a in q['answers']], [a['value'] for a in q['answers']])
             q['matcher'] = matcher
-            self._questions[key] = q
+            self._questions[q['key']] = q
+        self._questions_order = {i: q['key'] for i, q in enumerate(questions)}
 
-        # parse artists
-        self._artists = {
-            row['artist_name']: row.to_dict()
-            for i, row in self._data['artists'].iterrows()
-        }
+        self._artists = {a['artist_name']: a for a in artists}
 
     def respond(self, ctx: tgalice.dialog_manager.Context):
         message_text = ctx.message_text
@@ -101,19 +61,25 @@ class QuizDialogManager(tgalice.dialog_manager.base.BaseDialogManager):
             set_state(STATE.ASK)
 
         if message_text == '/start' or message_text == '' or message_text is None or ctx.metadata.get('new_session'):
-            response.set_text(self._TEXT_HELLO)
+            response.set_text(self.phrases['hello'])
             response.suggests = ['да', 'нет']
             set_state(STATE.HELLO)
         elif message_text == '/help' or tgalice.basic_nlu.like_help(normalized_text):
-            response.set_text(self._TEXT_HELP)
+            response.set_text(self.phrases['help'])
+        elif tgalice.nlu.basic_nlu.like_exit(normalized_text):
+            response.set_text(self.phrases['exit'])
+            response.commands.append(tgalice.dialog_manager.COMMANDS.EXIT)
+        elif is_like_start(normalized_text):
+            ask(self._questions_order[0])
         elif prev_state == STATE.HELLO.name or prev_state == STATE.HELP.name:
             if tgalice.basic_nlu.like_no(normalized_text):
-                response.set_text(self._TEXT_NO)
+                response.set_text(self.phrases['if_no'])
+                response.commands.append(tgalice.dialog_manager.COMMANDS.EXIT)
                 # todo: set some smart state
             elif tgalice.basic_nlu.like_yes(normalized_text):
                 ask(self._questions_order[0])
             else:
-                response.set_text(self._TEXT_HELP)
+                response.set_text(self.phrases['help'])
         elif prev_state == STATE.ASK.name:
             print('saving answer to {}'.format(prev_question))
             assert prev_question in self._questions  # todo: handle it
@@ -135,7 +101,7 @@ class QuizDialogManager(tgalice.dialog_manager.base.BaseDialogManager):
                     artist_name = artist['artist_name']
                     response.updated_user_object['best_artist'] = artist_name
                     response.set_text(
-                        self._TEXT_FINISH.replace(
+                        self.phrases['finish'].replace(
                             self.TEMPLATES.ARTIST_NAME, artist_name
                         ).replace(
                             self.TEMPLATES.ARTIST_ID, str(artist['playlistnum'])
@@ -147,7 +113,7 @@ class QuizDialogManager(tgalice.dialog_manager.base.BaseDialogManager):
         else:
             print('other reply')
             set_state(STATE.HELP)
-            response.set_text(self._TEXT_HELP)
+            response.set_text(self.phrases['help'])
         return response
 
     def match_artist(self, form):
@@ -163,3 +129,9 @@ class QuizDialogManager(tgalice.dialog_manager.base.BaseDialogManager):
                 best_artist = artist
         assert best_artist is not None
         return best_artist
+
+    @classmethod
+    def from_yaml(cls, filename, **kwargs):
+        with open(filename, 'r', encoding='utf8') as f:
+            data = yaml.safe_load(f)
+        return cls(**data, **kwargs)
