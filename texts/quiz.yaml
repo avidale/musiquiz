@@ -110,12 +110,16 @@ questions:
   text: 'Какая музыкальная эпоха тебе кажется самой отвязной?'
   answers:
   - text: 60-е
+    synonyms: ['60', шестидесятые]
     value: '60'
   - text: 70-е
+    synonyms: ['70', семидесятые]
     value: '70'
   - text: 80-е
+    synonyms: ['80', восьмидесятые]
     value: '80'
   - text: 90-е
+    synonyms: ['90', девяностые]
     value: '90'
 
 artists:

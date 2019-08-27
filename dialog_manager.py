@@ -31,7 +31,15 @@ class QuizDialogManager(tgalice.dialog_manager.base.BaseDialogManager):
             matcher = tgalice.nlu.matchers.TextDistanceMatcher(
                 metric='levenshtein', by_words=False, threshold=0.4
             )
-            matcher.fit([a['text'] for a in q['answers']], [a['value'] for a in q['answers']])
+            y = []
+            x = []
+            for a in q['answers']:
+                y.append(a['value'])
+                x.append(a['text'])
+                for syn in a.get('synonyms', []):
+                    y.append(a['value'])
+                    x.append(syn)
+            matcher.fit(x, y)
             q['matcher'] = matcher
             self._questions[q['key']] = q
         self._questions_order = {i: q['key'] for i, q in enumerate(questions)}
