@@ -32,7 +32,7 @@ questions:
   - text: Контратенор
     value: м
   - text: Баритон
-    value: ь
+    value: м
 - key: genre
   text: 'Так и знала! Вокалист группы "The Who" <voice>,</voice> сравнил разбитые
     музыкальные инструменты с жертвенными животными. <speaker audio="alice-sounds-animals-monkey-1.opus">

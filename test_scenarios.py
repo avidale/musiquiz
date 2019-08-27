@@ -26,3 +26,15 @@ def test_start(default_dialog_manager):
     assert 'Йоу!' in r0.text  # substring in string
     assert 'да' in r0.suggests  # string in list of strings
     assert 'нет' in r0.suggests  # string in list of strings
+
+
+def test_randomization(default_dialog_manager):
+    r0 = default_dialog_manager.respond(make_context(new_session=True))
+    r1 = default_dialog_manager.respond(make_context(text='да', prev_response=r0))
+    chosen_options = set()
+    for i in range(100):
+        r2 = default_dialog_manager.respond(
+            make_context(text='какая-то безумная хрень которая точно не матчится', prev_response=r1)
+        )
+        chosen_options.add(r2.updated_user_object['form']['sex'])
+    assert chosen_options == {'м', 'ж'}

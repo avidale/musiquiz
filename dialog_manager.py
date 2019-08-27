@@ -1,3 +1,4 @@
+import random
 import re
 import tgalice
 import yaml
@@ -95,29 +96,28 @@ class QuizDialogManager(tgalice.dialog_manager.base.BaseDialogManager):
             q = self._questions[prev_question]
             choice, score = q['matcher'].match(normalized_text)
             if choice is None:
-                # todo: reask smarter
-                ask(prev_question)
-            else:
-                memorize(prev_question, choice)
-                next_q_index = q['order'] + 1
-                if next_q_index not in self._questions_order:
-                    set_state(STATE.RESULT)
-                    form = response.updated_user_object['form']
-                    print(form)
-                    artist = self.match_artist(form)
-                    print(artist)
-                    artist_name = artist['artist_name']
-                    response.updated_user_object['best_artist'] = artist_name
-                    response.set_text(
-                        self.phrases['finish'].replace(
-                            self.TEMPLATES.ARTIST_NAME, artist_name
-                        ).replace(
-                            self.TEMPLATES.ARTIST_ID, str(artist['playlistnum'])
-                        )
+                choice = random.choice(q['answers'])['value']
+                print('Answer selector had low score {} - chose the option "{}" randomly instead'.format(score, choice))
+            memorize(prev_question, choice)
+            next_q_index = q['order'] + 1
+            if next_q_index not in self._questions_order:
+                set_state(STATE.RESULT)
+                form = response.updated_user_object['form']
+                print(form)
+                artist = self.match_artist(form)
+                print(artist)
+                artist_name = artist['artist_name']
+                response.updated_user_object['best_artist'] = artist_name
+                response.set_text(
+                    self.phrases['finish'].replace(
+                        self.TEMPLATES.ARTIST_NAME, artist_name
+                    ).replace(
+                        self.TEMPLATES.ARTIST_ID, str(artist['playlistnum'])
                     )
-                    response.image_id = artist['photo']
-                else:
-                    ask(self._questions_order[next_q_index])
+                )
+                response.image_id = artist['photo']
+            else:
+                ask(self._questions_order[next_q_index])
         else:
             print('other reply')
             set_state(STATE.HELP)
