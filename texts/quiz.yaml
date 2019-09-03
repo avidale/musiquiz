@@ -4,12 +4,12 @@ phrases:
     же подобрать идеальный плейлист. Продолжим?'
   if_no: '<speaker audio="alice-music-guitar-g-1.opus"> Очень жаль! Кажется, тебе не нужна моя помощь в подборе музыки. Поэтому переходи на Яндекс<text>.</text><voice> </voice>Музыку и слушай, что
     душе угодно. Думаю, тебе точно понравится плейлист дня!
-    <a href="https://music.yandex.ru?from=alice_skill_musical_twin" hide=false>Слушать музыку</a>'
+    <a href="https://music.yandex.ru?from=alice_skill_musical_twin">Слушать музыку</a>'
   help: 'Это навык Музыкальный близнец. Здесь ты можешь ответить на семь вопросов и узнать, на кого
     из музыкантов ты похож. В результате ты получишь ссылку на музыку, которая тебе точно понравится. Чтобы начать игру, скажите "Начать". Чтобы выйти, скажите "Выход".'
   finish: 'Ого! Мы выяснили, что вы - музыкальный близнец {{artist_name}}. Скорее переходите
     на Яндекс<text>.</text><voice> </voice>Музыку, чтобы послушать исполнителей, похожих на {{artist_name}}.
-    <a href="https://music.yandex.ru/artist/{{artist_id}}/similar?from=alice_skill_musical_twin" hide=false>Музыка типа {{artist_name}}</a>
+    <a href="https://music.yandex.ru/artist/{{artist_id}}/similar?from=alice_skill_musical_twin">Музыка типа {{artist_name}}</a>
     <a href="https://dialogs.yandex.ru/store/skills/426bcfb6-muzykal-nyj-bliznec">Оценить навык</a>'
   exit: 'Очень жаль с тобой расставаться, мы так мило беседовали. Возвращайся ещё, поговорим о музыке. Пока!<speaker audio="alice-music-drums-1.opus">'
 
