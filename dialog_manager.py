@@ -118,8 +118,9 @@ class QuizDialogManager(tgalice.dialog_manager.base.BaseDialogManager):
                 response.image = tgalice.nlg.controls.BigImage(
                     image_id=artist['photo'],
                     button_url="https://music.yandex.ru/artist/{}/similar?from=alice_skill_musical_twin".format(
-                        artist['playlistnum']
-                    )
+                        artist['playlistnum'],
+                    ),
+                    description=response.text
                 )
             else:
                 ask(self._questions_order[next_q_index])
