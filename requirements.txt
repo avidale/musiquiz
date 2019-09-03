@@ -1,4 +1,4 @@
-tgalice==0.1.5
+tgalice==0.1.6
 mongomock
 pymongo
 pyyaml
